@@ -9,11 +9,13 @@
   </ul>
 
     <form action="/restaurants/<%= object.id %>" method="post">
-      <% if((object.user && object.user.id) === locals.user.id){ %>
-        <div class="col l10">
-          <input type="hidden" name="_method" value="DELETE">
-          <button class="btn red">Delete Restaurant</button>
-        </div>
+      <% if(locals.isLoggedIn) {%>
+        <% if((object.user && object.user.id) === locals.user.id){ %>
+          <div class="col l10">
+            <input type="hidden" name="_method" value="DELETE">
+            <button class="btn red">Delete Restaurant</button>
+          </div>
+        <% } %>
       <% } %>
     </form>
 </div>
