@@ -1,0 +1,33 @@
+<div class="row">
+  <h2>Edit <%= object.name %></h2>
+  <form class="col l12" action="/restaurants/<%= object.id %>" method="post" value='<%= object.name %>'>
+    <input type='hidden' name='_method' value='PUT'>
+    <div class="input-field col l12">
+      <input type="text" name="name" id="name_field" value="<%= object.name %>">
+      <label for="name_field">Name</label>
+    </div>
+    <div class="input-field col l12">
+      <input type="text" name="location" id="location_field" value="<%= object.location %>">
+      <label for="location_field">Location</label>
+    </div>
+    <div class="input-field col l12">
+      <input type="text" name="phone" id="phone_field" value="<%= object.phone %>">
+      <label for="phone_field">Phone</label>
+    </div>
+    <div class="input-field col l12">
+      <input type="text" name="email" id="email_field" value="<%= object.email %>">
+      <label for="email_field">Email</label>
+    </div>
+    <div class="input-field col l12">
+      <input type="text" name="website" id="website_field" value="<%= object.website %>">
+      <label for="website_field">Website</label>
+    </div>
+    <div class="input-field col l12">
+      <input type="text" name="food" id="food_field" value="<%= object.food %>">
+      <label for="food_field">Food</label>
+    </div>
+    <div class="input-field col l12">
+      <button class="green btn">Edit Restaurant</button>
+    </div>
+  </form>
+</div>

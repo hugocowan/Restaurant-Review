@@ -1,0 +1,58 @@
+<h1>Here are a list of restaurants</h1>
+<div class="row">
+    <div class="col s12">
+      <ul class="tabs">
+        <li class="tab col s3"><a class="active" href="#test1">All Restaurants</a></li>
+        <% if(locals.isLoggedIn) {%>
+        <li class="tab col s3"><a href="#test2">My Restaurants</a></li>
+          <% } %>
+      </ul>
+    </div>
+    <%# all restaurants %>
+    <div id="test1" class="col s12">
+      <% object.forEach(restaurant => { %>
+        <div class="col s12 m6">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <span class="card-title">
+              <%= restaurant.name %></span>
+              <p><%= restaurant.location %></p>
+              <p><%= restaurant.phone %></p>
+              <p><%= restaurant.email %></p>
+              <p><%= restaurant.website %></p>
+              <p><%= restaurant.food %></p>
+            </div>
+            <div class="card-action">
+              <a href="/restaurants/<%= restaurant._id %>" class="green-text">View Restaurant</a>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+    <%# my restaurants %>
+    <% if(locals.isLoggedIn) {%>
+    <div id="test2" class="col s12">
+      <% object.forEach(restaurant => {
+          if((restaurant.user && restaurant.user.id) === locals.user.id){ %>
+        <div class="col s12 m6">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <span class="card-title">
+              <%= restaurant.name %></span>
+              <p><%= restaurant.location %></p>
+              <p><%= restaurant.phone %></p>
+              <p><%= restaurant.email %></p>
+              <p><%= restaurant.website %></p>
+              <p><%= restaurant.food %></p>
+            </div>
+            <div class="card-action">
+              <a href="/restaurants/<%= restaurant._id %>" class="green-text">View Restaurant</a>
+              <a href="/restaurants/<%= restaurant._id %>/edit" class="orange-text">Edit Restaurant</a>
+            </div>
+          </div>
+        </div>
+        <% } %>
+      <% }) %>
+      <% } %>
+    </div>
+  </div>
