@@ -1,0 +1,18 @@
+<div class="row">
+  <h3 class="col l10"><%= object.title %></h3>
+  <ul class="col l10">
+      <li><%= object.rating %></li>
+      <li><%= object.comments %></li>
+  </ul>
+
+    <form action="/reviews/<%= object.id %>" method="post">
+      <% if(locals.isLoggedIn) {%>
+        <% if((object.user && object.user.id) === locals.user.id){ %>
+          <div class="col l10">
+            <input type="hidden" name="_method" value="DELETE">
+            <button class="btn red">Delete Review</button>
+          </div>
+        <% } %>
+      <% } %>
+    </form>
+</div>

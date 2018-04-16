@@ -1,0 +1,39 @@
+<% const getRestaurantId = function(restaurant){
+  return restaurant.id;
+} %>
+
+<div class="row">
+  <h2>Add a new Review</h2>
+  <form class='col l12' action="/reviews" method="post">
+    <div class="input-field col l12">
+      <input type="text" name="title" id='title_field' required>
+      <label for="title_field">Title of Review</label>
+    </div>
+    <div class="input-field col l12">
+      <input type="text" name="rating" id='rating_field' required>
+      <label for="rating_field">Rating</label>
+    </div>
+    <div class="input-field col l12">
+      <input type="text" name="comments" id='comments_field'>
+      <label for="comments_field">Comments</label>
+    </div>
+    <%# <div class="input-field col l12">
+      <input type="text" name="restaurant" id='restaurant_field'>
+    </div> %>
+
+
+    <!-- Dropdown Structure -->
+    <div class="input-field col s12">
+      <select name='restaurant'>
+      <option disabled selected>Choose a Restaurant</option>
+        <% object.forEach(restaurant => { %>
+            <option value='<%= restaurant.id %>'><%= restaurant.name %></option>
+        <% }) %>
+      </select>
+    </div>
+  </div>
+
+      <button class="green btn">Add Review</button>
+    </div>
+  </form>
+</div>

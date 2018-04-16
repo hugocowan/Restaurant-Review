@@ -21,7 +21,7 @@ userSchema
 //Before (pre) any function 'saves' something, run this function to encrypt the password before it is stored:
 userSchema.pre('validate', function checkPassword(next){
   if(this.isModified('password') && this._passwordConfirmation !== this.password){
-    this.invalidate('passwordCondfirmation', 'does not match');
+    this.invalidate('passwordConfirmation', 'does not match');
   }
   next();
 });

@@ -2,6 +2,7 @@ const router = require('express').Router();
 
 const statics = require('../controllers/statics');
 const restaurants = require('../controllers/restaurants');
+const reviews = require('../controllers/reviews');
 const registrations = require('../controllers/registrations');
 const sessions = require('../controllers/sessions');
 
@@ -41,8 +42,26 @@ router.route('/restaurants/:id')
   .put(restaurants.update);
 
 router.route('/restaurants/:id/edit')
-  .get(secureRoute, restaurants.edit);
+  .get(secureRoute, restaurants.edit)
+  .delete(secureRoute, restaurants.delete);
 //end resource restaurants
+
+//reviews
+router.route('/reviews')
+  .get(reviews.index)
+  .post(reviews.create);
+
+router.route('/reviews/new')
+  .get(secureRoute, reviews.new);
+
+router.route('/reviews/:id')
+  .get(reviews.show)
+  .delete(secureRoute, reviews.delete)
+  .put(reviews.update);
+
+router.route('/reviews/:id/edit')
+  .get(secureRoute, reviews.edit);
+//end resource reviews
 
 //authentication
 router.route('/register')
