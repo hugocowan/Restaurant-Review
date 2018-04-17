@@ -1,8 +1,8 @@
 <div class="row">
-  <% object.reviews.forEach(review=>{ %>
+  <% restaurant.reviews.forEach(review=>{ %>
     <% if(review.id === locals.review) {%>
       <h2>Edit <%= review.title %></h2>
-      <form class='col l12' action="/restaurants/<%= object.id %>/reviews/<%= review.id %>" method="post">
+      <form class='col l12' action="/restaurants/<%= restaurant.id %>/reviews/<%= review.id %>" method="post">
       <input type='hidden' name='_method' value='PUT'>
         <div class="input-field col l12">
           <input type="text" name="title" id='title_field' required value="<%= review.title %>">

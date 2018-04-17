@@ -7,8 +7,8 @@ function restaurantsIndex(req, res){
     .find()
     .populate('user reviews.user')//This populates the user key in both the main object and under the key reviews.
     .exec()
-    .then(object=>{
-      res.render('pages/restaurants', {object});
+    .then(restaurants=>{
+      res.render('pages/restaurants', {restaurants});
     });
 }
 
@@ -46,25 +46,25 @@ function restaurantsEdit(req, res){
     .findById(req.params.id)
     // .populate('photos') //this takes the array of photo ids and turns each one into a document.
     .exec()
-    .then(object => res.render('pages/edit-restaurant', {object}));
+    .then(restaurant => res.render('pages/edit-restaurant', {restaurant}));
 }
 
 function restaurantsUpdate(req, res){
   Restaurant
     .findById(req.params.id)
     .exec()
-    .then(object => {
-      object= Object.assign(object, req.body);
-      return object.save();
+    .then(restaurant => {
+      restaurant= Object.assign(restaurant, req.body);
+      return restaurant.save();
     })
-    .then(object => res.redirect(`/restaurants/${object._id}`));
+    .then(restaurant => res.redirect(`/restaurants/${restaurant._id}`));
 }
 
 function restaurantsDelete(req, res){
   Restaurant
     .findById(req.params.id)
     .exec()
-    .then(object=>object.remove())
+    .then(restaurant=>restaurant.remove())
     .then(()=>res.redirect('/restaurants'));
 }
 
@@ -93,9 +93,9 @@ function reviewsEdit(req, res){
     .findById(req.params.id)
     .populate('reviews')
     .exec()
-    .then(object =>{
+    .then(restaurant =>{
       res.locals.review = req.params.reviewId;
-      res.render('pages/edit-review', {object});
+      res.render('pages/edit-review', {restaurant});
     });
 }
 
@@ -116,13 +116,13 @@ function reviewsDelete(req, res){
   Restaurant
     .findById(req.params.id)
     .exec()
-    .then(object=>{
-      const review = object.reviews.id(req.params.reviewId);
-      // console.log('Here\'s the object: ',object);
+    .then(restaurant=>{
+      const review = restaurant.reviews.id(req.params.reviewId);
+      // console.log('Here\'s the restaurant: ',restaurant);
       review.remove();//This deletes all reviews. I want it to delete just one.
-      return object.save();
+      return restaurant.save();
     })
-    .then((object)=>res.redirect(`/restaurants/${object._id}`));
+    .then((restaurant)=>res.redirect(`/restaurants/${restaurant._id}`));
 }
 
 module.exports = {

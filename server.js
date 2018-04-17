@@ -10,6 +10,7 @@ const session             = require('express-session'); //Required by flash. Lin
 const User                = require('./models/user');
 const {port, databaseURI} = require('./config/environment');
 const customResponses     = require('./lib/customResponses');
+mongoose.Promise = require('bluebird');
 
 // The above is the same as doing:
 // const port = require('./config/environment').port;
