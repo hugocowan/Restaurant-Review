@@ -16,11 +16,12 @@
             <div class="card-content white-text">
               <span class="card-title">
               <%= restaurant.name %></span>
-              <p><%= restaurant.location %></p>
-              <p><%= restaurant.phone %></p>
-              <p><%= restaurant.email %></p>
-              <p><%= restaurant.website %></p>
-              <p><%= restaurant.food %></p>
+              <img src="<%= restaurant.url %>">
+              <p>Location: <%= restaurant.location %></p>
+              <p>Number: <%= restaurant.phone %></p>
+              <p>Email: <%= restaurant.email %></p>
+              <p>Website: <%= restaurant.website %></p>
+              <p>Cuisine: <%= restaurant.food %></p>
             </div>
             <div class="card-action">
               <a href="/restaurants/<%= restaurant._id %>" class="green-text">View Restaurant</a>
@@ -31,28 +32,28 @@
     </div>
     <%# my restaurants %>
     <% if(locals.isLoggedIn) {%>
-    <div id="test2" class="col s12">
-      <% object.forEach(restaurant => {
+      <div id="test2" class="col s12">
+        <% object.forEach(restaurant => {
           if((restaurant.user && restaurant.user.id) === locals.user.id){ %>
-        <div class="col s12 m6">
-          <div class="card blue-grey darken-1">
-            <div class="card-content white-text">
-              <span class="card-title">
-              <%= restaurant.name %></span>
-              <p><%= restaurant.location %></p>
-              <p><%= restaurant.phone %></p>
-              <p><%= restaurant.email %></p>
-              <p><%= restaurant.website %></p>
-              <p><%= restaurant.food %></p>
+            <div class="col s12 m6">
+              <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                  <span class="card-title">
+                  <%= restaurant.name %></span>
+                  <p><%= restaurant.location %></p>
+                  <p><%= restaurant.phone %></p>
+                  <p><%= restaurant.email %></p>
+                  <p><%= restaurant.website %></p>
+                  <p><%= restaurant.food %></p>
+                </div>
+                <div class="card-action">
+                  <a href="/restaurants/<%= restaurant._id %>" class="green-text">View Restaurant</a>
+                  <a href="/restaurants/<%= restaurant._id %>/edit" class="orange-text">Edit Restaurant</a>
+                </div>
+              </div>
             </div>
-            <div class="card-action">
-              <a href="/restaurants/<%= restaurant._id %>" class="green-text">View Restaurant</a>
-              <a href="/restaurants/<%= restaurant._id %>/edit" class="orange-text">Edit Restaurant</a>
-            </div>
-          </div>
-        </div>
-        <% } %>
-      <% }) %>
-      <% } %>
-    </div>
+          <% } %>
+        <% }) %>
+      </div>
+    <% } %>
   </div>

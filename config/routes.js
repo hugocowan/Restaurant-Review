@@ -47,6 +47,12 @@ router.route('/restaurants/:id/edit')
 
 //reviews
 router.post('/restaurants/:id/reviews', secureRoute, restaurants.reviewsCreate);
+
+router.route('/restaurants/:id/reviews/:reviewId')
+  .delete(secureRoute, restaurants.reviewsDelete)
+  .put(secureRoute, restaurants.reviewsUpdate);
+
+router.get('/restaurants/:id/reviews/:reviewId/edit', secureRoute, restaurants.reviewsEdit);
 //end resource reviews
 
 //authentication

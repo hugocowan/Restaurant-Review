@@ -1,23 +1,55 @@
 <div class="row">
-  <h3 class="col l10"><%= object.name %></h3>
-  <ul class="col l10">
-      <li><%= object.location %></li>
-      <li><%= object.phone %></li>
-      <li><%= object.email %></li>
-      <li><%= object.website %></li>
-      <li><%= object.food %></li>
+  <h3 class="col l8"><%= restaurant.name %></h3>
+  <img src="<%= restaurant.url %>">
+  <ul class="col l12">
+      <li>Location: <%= restaurant.location %></li>
+      <li>Number: <%= restaurant.phone %></li>
+      <li>Email: <%= restaurant.email %></li>
+      <li>Website: <%= restaurant.website %></li>
+      <li>Food: <%= restaurant.food %></li>
   </ul>
 <% if(locals.isLoggedIn){ %>
   <div class="row">
     <h2>Add a new Review</h2>
-    <form class='col l12' action="/restaurants/<%= object.id%>/reviews" method="post">
+    <form class='col l12' action="/restaurants/<%= restaurant.id%>/reviews" method="post">
       <div class="input-field col l12">
         <input type="text" name="title" id='title_field' required>
         <label for="title_field">Title of Review</label>
       </div>
       <div class="input-field col l12">
-        <input type="text" name="rating" id='rating_field' required>
-        <label for="rating_field">Rating</label>
+      <p>
+      <label>Rating out of 5</label>
+      </p>
+      <p>
+      <label>
+        <input class="with-gap" name="rating" type="radio" value= 1 />
+        <span>1</span>
+      </label>
+    </p>
+    <p>
+      <label>
+        <input class="with-gap" name="rating" type="radio" value= 2 />
+        <span>2</span>
+      </label>
+    </p>
+    <p>
+      <label>
+        <input class="with-gap" name="rating" type="radio" value= 3 checked/>
+        <span>3</span>
+      </label>
+    </p>
+    <p>
+      <label>
+        <input class="with-gap" name="rating" type="radio" value= 4 />
+        <span>4</span>
+      </label>
+    </p>
+    <p>
+      <label>
+        <input class="with-gap" name="rating" type="radio" value= 5 />
+        <span>5</span>
+      </label>
+    </p>
       </div>
       <div class="input-field col l12">
         <input type="text" name="comments" id='comments_field'>
@@ -30,7 +62,7 @@
   </div>
 <%}%>
 
-  <% object.reviews.forEach(review => { %>
+  <% restaurant.reviews.forEach(review => { %>
     <div class="col s12 m6">
       <div class="card blue-grey darken-1">
         <div class="card-content white-text">
@@ -39,16 +71,26 @@
           <p><%= review.rating %></p>
           <p><%= review.comments %></p>
         </div>
-        <div class="card-action">
-          <a href="/reviews/<%= review._id %>" class="green-text">View Review</a>
-        </div>
+        <% if(locals.isLoggedIn) {%>
+          <% if((review.user && review.user.id) === locals.user.id){ %>
+            <form action="/restaurants/<%= restaurant.id %>/reviews/<%= review.id %>" method="post">
+              <div class="col l0">
+                <input type="hidden" name="_method" value="DELETE">
+                <button class="btn red">Delete Review</button>
+              </div>
+              <div class="col l0">
+                <a href="/restaurants/<%= restaurant.id %>/reviews/<%= review.id %>/edit" class="orange-text">Edit Review</a>
+              </div>
+            </form>
+          <% } %>
+        <% } %>
       </div>
     </div>
   <% }) %>
 
-    <form action="/restaurants/<%= object.id %>" method="post">
+    <form action="/restaurants/<%= restaurant.id %>" method="post">
       <% if(locals.isLoggedIn) {%>
-        <% if((object.user && object.user.id) === locals.user.id){ %>
+        <% if((restaurant.user && restaurant.user.id) === locals.user.id){ %>
           <div class="col l10">
             <input type="hidden" name="_method" value="DELETE">
             <button class="btn red">Delete Restaurant</button>

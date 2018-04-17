@@ -1,30 +1,56 @@
 <div class="row">
-  <% if(object.restaurant) {%>
-  <h2>Edit Review <%= object.title %> for
-  <%= object.restaurant.name %></h2>
-  <% }else{ %>
-    <h2>Edit Review <%= object.title %>
-    <%}%>
-  <form class='col l12' action="/reviews/<%= object.id %>" method="post" value='<%= object.title %>'>
-    <input type='hidden' name='_method' value='PUT'>
-    <div class="input-field col l12">
-      <input type="text" name="title" id='title_field' required value="<%= object.title %>">
-      <label for="title_field">Title of Review</label>
-    </div>
-    <div class="input-field col l12">
-      <input type="text" name="rating" id='rating_field' required value="<%= object.rating %>">
-      <label for="rating_field">Rating</label>
-    </div>
-    <div class="input-field col l12">
-      <input type="text" name="comments" id='comments_field' value="<%= object.comments %>">
-      <label for="comments_field">Comments</label>
-    </div>
-      <button class="green btn">Add Review</button>
+  <% object.reviews.forEach(review=>{ %>
+    <% if(review.id === locals.review) {%>
+      <h2>Edit <%= review.title %></h2>
+      <form class='col l12' action="/restaurants/<%= object.id %>/reviews/<%= review.id %>" method="post">
+      <input type='hidden' name='_method' value='PUT'>
+        <div class="input-field col l12">
+          <input type="text" name="title" id='title_field' required value="<%= review.title %>">
+          <label for="title_field">Title of Review</label>
+        </div>
+        <div class="input-field col l12">
+        <p>
+        <label>Rating out of 5</label>
+        </p>
+        <p>
+        <label>
+          <input class="with-gap" name="rating" type="radio" value= 1 />
+          <span>1</span>
+        </label>
+      </p>
+      <p>
+        <label>
+          <input class="with-gap" name="rating" type="radio" value= 2 />
+          <span>2</span>
+        </label>
+      </p>
+      <p>
+        <label>
+          <input class="with-gap" name="rating" type="radio" value= 3 />
+          <span>3</span>
+        </label>
+      </p>
+      <p>
+        <label>
+          <input class="with-gap" name="rating" type="radio" value= 4 />
+          <span>4</span>
+        </label>
+      </p>
+      <p>
+        <label>
+          <input class="with-gap" name="rating" type="radio" value= 5 />
+          <span>5</span>
+        </label>
+      </p>
+        </div>
+        <div class="input-field col l12">
+          <input type="text" name="comments" id='comments_field' value="<%= review.comments %>">
+          <label for="comments_field">Comments</label>
+        </div>
+
+          <button class="green btn">Add Review</button>
+        </div>
+      <%}%>
+    <%})%>
   </form>
 </div>
-<form action="/reviews/<%= object.id %>" method="post">
-  <div class="col l10">
-    <input type="hidden" name="_method" value="DELETE">
-    <button class="btn red">Delete Review</button>
-  </div>
-</form>

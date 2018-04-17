@@ -5,7 +5,7 @@ const Restaurant = require('../models/restaurant');
 function restaurantsIndex(req, res){
   Restaurant
     .find()
-    .populate('user reviews.user')
+    .populate('user reviews.user')//This populates the user key in both the main object and under the key reviews.
     .exec()
     .then(object=>{
       res.render('pages/restaurants', {object});
@@ -14,14 +14,13 @@ function restaurantsIndex(req, res){
 
 function restaurantsShow(req, res){
   Restaurant
-    .findById(req.params.id)
+    .findById(req.params.id)//This takes the value specified in the section of the given url :id.
     // .populate('photos') //this takes the array of photo ids and turns each one into a document.
-    .populate('user')
-    .populate('review')
+    .populate('user reviews.user')
     .exec()
-    .then(function (object){
-      // console.log('object: ',object);
-      res.render('pages/show', {object});
+    .then(restaurant => {
+      // console.log('restaurant ',restaurant);
+      res.render('pages/show', {restaurant});
     });
 }
 
@@ -77,38 +76,53 @@ function reviewsCreate(req, res){
     .exec()
     .then((restaurant)=> {
       restaurant.reviews.push(req.body);
-      console.log('restaurant/Review---->',restaurant.reviews);
+      // console.log('restaurant/Review---->',restaurant.reviews);
       return restaurant.save();
     })
     .then(restaurant => res.redirect(`/restaurants/${restaurant.id}`))
-    .catch(err => console.log(err));
+    .catch((err)=>{
+      console.log('HERE err: ', err);
+      if(err.name === 'ValidationError'){
+        return res.badRequest('/restaurants', err.toString());
+      }
+    });
 }
 
 function reviewsEdit(req, res){
   Restaurant
     .findById(req.params.id)
-    // .populate('photos') //this takes the array of photo ids and turns each one into a document.
+    .populate('reviews')
     .exec()
-    .then(object => res.render('pages/edit-review', {object}));
+    .then(object =>{
+      res.locals.review = req.params.reviewId;
+      res.render('pages/edit-review', {object});
+    });
 }
 
 function reviewsUpdate(req, res){
   Restaurant
     .findById(req.params.id)
     .exec()
-    .then(object => {
-      object= Object.assign(object, req.body);
-      return object.save();
-    })
-    .then(object => res.redirect(`/reviews/${object._id}`));
+    .then(restaurant => {
+      // console.log('HERE ONE', restaurant);
+      Object.assign(restaurant.reviews.id(req.params.reviewId), req.body);
+      restaurant.save();
+      // console.log(restaurant, review);
+      res.redirect(`/restaurants/${restaurant._id}`);
+    });
 }
 
 function reviewsDelete(req, res){
   Restaurant
     .findById(req.params.id)
     .exec()
-    .then(object=>object.remove())
-    .then(()=>res.redirect('/reviews'));
+    .then(object=>{
+      const review = object.reviews.id(req.params.reviewId);
+      // console.log('Here\'s the object: ',object);
+      review.remove();//This deletes all reviews. I want it to delete just one.
+      return object.save();
+    })
+    .then((object)=>res.redirect(`/restaurants/${object._id}`));
 }
 
 module.exports = {
