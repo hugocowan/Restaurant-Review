@@ -38,7 +38,8 @@ Restaurant.create({
     rating: 2,
     comments: 'I have been reviewing restaurants for 76 years, and not once have I had such a meal. Truly, truly incredible. Heaven has come to Earth as a bar and grill restaurant.',
     user: '5ad239fe5ecaf68ba50055ff'
-  }]
+  }],
+  user: '5ad239fe5ecaf68ba50055ff'
 })
 
   .catch(err => console.log(err))

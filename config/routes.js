@@ -18,7 +18,7 @@ function secureRoute(req, res, next){
 }
 
 router.get('/', (req, res)=>{
-  res.render('pages/home');
+  res.redirect('/restaurants');
 });
 
 //private
@@ -45,6 +45,7 @@ router.route('/restaurants/:id/edit')
   .delete(secureRoute, restaurants.delete);
 //end resource restaurants
 
+
 //reviews
 router.post('/restaurants/:id/reviews', secureRoute, restaurants.reviewsCreate);
 
@@ -54,6 +55,7 @@ router.route('/restaurants/:id/reviews/:reviewId')
 
 router.get('/restaurants/:id/reviews/:reviewId/edit', secureRoute, restaurants.reviewsEdit);
 //end resource reviews
+
 
 //authentication
 router.route('/register')
