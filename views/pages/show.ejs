@@ -1,7 +1,12 @@
+<% const reviewRatings = restaurant.reviews.map(review=>review.rating); %>
+<% console.log('THIS IS THE REVIEW RATINGS CONSTANT: ',reviewRatings, 'AND THIS IS reviewRatings.length(): ', reviewRatings.length); %>
+<% const averageRating = (reviewRatings.reduce((total, currentValue)=>total+currentValue)/(reviewRatings.length)); %>
+
 <div class="row">
   <h3 class="col l8"><%= restaurant.name %></h3>
   <img src="<%= restaurant.url %>">
   <ul class="col l12">
+      <li>Average Rating: <%= averageRating %></li>
       <li>Location: <%= restaurant.location %></li>
       <li>Number: <%= restaurant.phone %></li>
       <li>Email: <%= restaurant.email %></li>
