@@ -7,23 +7,25 @@
     <%include ./partials/_stylesheet %>
   </head>
   <body>
-    <header class="header">
-    <%include ./partials/_header %>
-    </header>
-    <main>
-      <% if(messages.danger){ %>
-        <div class="col s12 l12">
-          <div class="card red lighten-3">
-            <div class="card-content red-text">
-              <span class="card-title"><%= messages.danger %></span>
+    <div class="">
+      <header class="header">
+        <%include ./partials/_header %>
+      </header>
+      <main>
+        <% if(messages.danger){ %>
+          <div class="col s12 l12">
+            <div class="card red lighten-3">
+              <div class="card-content red-text">
+                <span class="card-title"><%= messages.danger %></span>
+              </div>
             </div>
           </div>
-        </div>
-      <% } %>
-      <%-body %>
-    </main>
-    <footer class="page-footer">
-      <%include ./partials/_footer %>
-    </footer>
+        <% } %>
+        <%-body %>
+      </main>
+      <footer class="page-footer">
+        <%include ./partials/_footer %>
+      </footer>
+    </div>
   </body>
 </html>

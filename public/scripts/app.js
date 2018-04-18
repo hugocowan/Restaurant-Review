@@ -1,4 +1,5 @@
 $(()=>{
   $('.tabs').tabs();
   $('select').formSelect();
+
 });

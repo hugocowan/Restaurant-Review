@@ -1,23 +1,38 @@
-.stars-outer {
-  display: inline-block;
-  position: relative;
-  font-family: FontAwesome;
+h1{
+  color: #295E6A;
 }
 
-.stars-outer::before {
-  content: "\f006 \f006 \f006 \f006 \f006";
+.card{
+  background-color:  #C1DAD6;
 }
 
-.stars-inner {
-  position: absolute;
-  top: 0;
-  left: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  width: 0;
+.page-footer, .nav-wrapper{
+  background-color: #6D929B;
 }
 
-.stars-inner::before {
-  content: "\f005 \f005 \f005 \f005 \f005";
-  color: #f8ce0b;
+.tab a.active {
+    background-color: transparent;
+    color: black;
+  }
+  .tabs .tab a {
+    color: #C1DAD6;
+}
+.tabs .tab a:hover, .tabs .tab a.active {
+    background-color: transparent;
+    color:  #6D929B;
+}
+.tabs .indicator {
+    background-color: grey;
+
+}
+
+.tabs .tab a:focus, .tabs .tab a:focus.active {
+    background-color: transparent;
+    outline: none;
+}
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating) {
+    color: #144552;
+}
+.card-title{
+  color: #295E6A;
 }
