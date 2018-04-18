@@ -9,6 +9,12 @@ body {
 main {
   flex: 1 0 auto; }
 
+img {
+  max-height: 300px; }
+
+.brand-logo img {
+  padding-left: 20px; }
+
 .card {
   background-color: #C1DAD6; }
 
@@ -34,9 +40,68 @@ main {
   outline: none; }
 
 .card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating) {
-  color: #144552; }
+  color: #144552;
+  background-color: transparent;
+  outline: none; }
 
 .card-title {
   color: #295E6A; }
+
+.card-content p {
+  padding: 10px 0 0 0; }
+  .card-content p span {
+    font-weight: bold; }
+
+#test1 .card {
+  height: 600px; }
+
+.waves-effect {
+  float: left; }
+
+.review-card {
+  display: inline-block;
+  float: left;
+  padding: 40px; }
+
+button {
+  position: absolute;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  top: 0; }
+  button :hover {
+    background-color: red; }
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating) {
+  color: #295E6A;
+  margin-left: 8px;
+  -webkit-transition: color .3s ease;
+  transition: color .3s ease;
+  position: absolute;
+  left: 0;
+  bottom: 10px;
+  text-transform: capitalize; }
+  .card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating).restaurant-edit {
+    position: absolute;
+    left: 48%; }
+
+.restaurant-delete {
+  position: absolute;
+  right: 0;
+  top: 3px; }
+
+.delete-review {
+  position: absolute;
+  display: inline-block;
+  height: 20px;
+  color: #ef5350;
+  top: 85%;
+  right: 0; }
+
+.edit-review {
+  position: absolute;
+  display: inline-block;
+  left: 0;
+  bottom: 5px; }
 
 /*# sourceMappingURL=style.css.map */
