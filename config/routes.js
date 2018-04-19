@@ -26,6 +26,18 @@ router.route('/private')
   .get(secureRoute, statics.private);//static.private calls the privateRoute function in the controller static.js.
 //end private
 
+//authentication
+router.route('/register')
+  .get(registrations.new)
+  .post(registrations.create);
+
+router.route('/login')
+  .get(sessions.new)
+  .post(sessions.create);
+
+router.route('/logout')
+  .get(sessions.delete);
+//end authentication
 
 //restaurants
 router.route('/restaurants')
@@ -57,18 +69,6 @@ router.get('/restaurants/:id/reviews/:reviewId/edit', secureRoute, restaurants.r
 //end resource reviews
 
 
-//authentication
-router.route('/register')
-  .get(registrations.new)
-  .post(registrations.create);
-
-router.route('/login')
-  .get(sessions.new)
-  .post(sessions.create);
-
-router.route('/logout')
-  .get(sessions.delete);
-//end authentication
 
 router.route('/*').get((req, res)=>{
   //To redirect false urls to the homepage:

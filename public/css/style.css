@@ -59,7 +59,7 @@ iframe {
   .card-content p span {
     font-weight: bold; }
 
-#test1 .card {
+#test1 .card, #test2 .card {
   height: 600px; }
 
 .waves-effect {
