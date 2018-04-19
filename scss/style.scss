@@ -12,8 +12,20 @@ body {
  }
 
  img{
-   max-height: 300px;
+   // max-height: 300px;
  }
+
+ iframe{
+   position: relative;
+   top: 8px;
+   padding: 10px;
+ }
+
+#map {
+     height: 400px;
+     width: 100%;
+     background-color: grey;
+    }
 
 //header
 
@@ -82,11 +94,20 @@ body {
 .waves-effect{
   float: left;
 }
-.review-card{
-  display: inline-block;
-  float: left;
-  padding: 40px;
+
+.row .col {
+    float: left;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0 .75rem;
+    min-height: 1px;
+    &.review-card{
+      display: inline-block;
+      float: left;
+      padding: 10px 10px 0 10px;
+    }
 }
+
 
 button{
   position: absolute;

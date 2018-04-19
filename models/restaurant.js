@@ -9,6 +9,7 @@ const reviewSchema = new mongoose.Schema({
 });
 
 const restaurantSchema = new mongoose.Schema({
+  map: String,
   url: String,
   name: {type: String, required: true},
   location: String,
@@ -40,6 +41,18 @@ restaurantSchema.methods.getStarIcons = function() {
   }
   if(this.avgRating % 1 > 0) stars += '<i class="fa fa-star-half"></i>';
   return stars;
+};
+
+restaurantSchema.methods.initMap = function() {
+  var uluru = {lat: -25.363, lng: 131.044};
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 4,
+    center: uluru
+  });
+  var marker = new google.maps.Marker({
+    position: uluru,
+    map: map
+  });
 };
 
 module.exports = mongoose.model('Restaurant', restaurantSchema);
