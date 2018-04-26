@@ -28,7 +28,8 @@ app.use(express.static(`${__dirname}/public`));
 app.use(morgan('dev'));
 app.use(expressLayouts);
 app.use(bodyParser.urlencoded({extended: true}));
-//for internet explorer compatibility.
+
+//For PUT requests. Browsers only support GET and POST requests by default.
 app.use(methodOverride(req=>{
   if(req.body && typeof req.body === 'object' && '_method' in req.body){
     const method = req.body._method;
