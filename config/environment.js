@@ -1,5 +1,5 @@
-const databaseURI = 'mongodb://localhost/restaurants';
-const port = 3000;
+const databaseURI = process.env.MONGODB_URI || 'mongodb://localhost/restaurants';
+const port = process.env.PORT || 3000;
 
 module.exports = {databaseURI, port};
 
