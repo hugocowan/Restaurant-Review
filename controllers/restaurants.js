@@ -29,7 +29,7 @@ function restaurantsNew(req, res){
 }
 
 function restaurantsCreate(req, res){
-  req.body.user = req.currentUser;
+  req.body.user = req.currentUser;//Gives created restaurant the user id of the currently logged in user.
   // console.log(req.body);
   Restaurant
     .create(req.body)//This is creating a database entry containing the form info(req.body).
@@ -69,7 +69,7 @@ function restaurantsDelete(req, res){
 }
 
 function reviewsCreate(req, res){
-  req.body.user = req.currentUser;
+  req.body.user = req.currentUser;//Gives created review the user id of the currently logged in user.
   // console.log(req.body);
   Restaurant
     .findById(req.params.id)
