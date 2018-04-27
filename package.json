@@ -5,6 +5,9 @@
   "repository": "git@github.com:hugocowan/Restaurant-Review.git",
   "author": "Hugo Cowan <hugocowan@hotmail.co.uk>",
   "license": "MIT",
+  "scripts": {
+    "start": "node server"
+  },
   "dependencies": {
     "bcrypt": "^2.0.0",
     "bluebird": "^3.5.1",
