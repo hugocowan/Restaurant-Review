@@ -5,7 +5,7 @@ function newRoute(req, res) {
 }
 
 function createRoute(req, res){
-  console.log('this is req:', req);
+  // console.log('this is req:', req);
   User
     .create(req.body)//This line saves the username, email and password that has been passed through as req, and .
     .then(()=>{
